@@ -1,8 +1,8 @@
-import Form from "./login";
+import Home from "./home.jsx"
 function App() {
   return (
     <div className="App">
-      <Form></Form>
+      <Home></Home>
     </div>
   );
 }
