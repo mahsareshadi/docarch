@@ -1,0 +1,14 @@
+#log-out{
+    outline: none;
+    border: none;
+    background-color: #696969;
+    font-family: "Montserrat";
+    font-size:70px;
+    cursor: pointer;
+    padding: 10px 30px;
+    border-radius: 10px;
+    }
+#btn{
+    display: flex;
+    justify-content: space-around;
+}
