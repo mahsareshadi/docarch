@@ -2,12 +2,14 @@
 #header{
     padding: 50px;
     text-align: center;
-    background-color: lightcoral;
+    background-color: #2c3a47aa;
     border-radius: 10px;
     font-family: "Montserrat";
     font-size: 90px;
     color: lightcyan;
     font-style: italic;
+
+    margin-bottom: 30px;
 
 }
 @media screen and (max-width: 900px){
