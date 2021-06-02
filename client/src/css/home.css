@@ -1,8 +1,0 @@
-.Home{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-.cnt{
-    padding: 30px;
-}
