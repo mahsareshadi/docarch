@@ -13,7 +13,7 @@ const dbConfig = {
 }
 
 let connection;
-function query(sql, callback, customConnection) {
+function query(sql, params, callback, customConnection) {
     if (!customConnection && !connection) {
         connection = mysql.createConnection(dbConfig);
         connection.connect(err => {
@@ -23,7 +23,7 @@ function query(sql, callback, customConnection) {
         });
     }
     const queryConnection = customConnection ?? connection;
-    queryConnection.query(sql, (err, res) => {
+    queryConnection.query(sql, params, (err, res) => {
         if (err) {
             console.log(err);
         } else {
@@ -37,4 +37,5 @@ function query(sql, callback, customConnection) {
 module.exports = {
     query: query,
     serverConfig: serverConfig,
+    dbConfig: dbConfig
 }

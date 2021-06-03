@@ -7,6 +7,7 @@ function createDb() {
     const con = mysql.createConnection(dbquery.serverConfig);
     query(
         "CREATE DATABASE IF NOT EXISTS docarch",
+        null,
         () => {
             con.end();
         },
