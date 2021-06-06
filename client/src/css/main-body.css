@@ -2,38 +2,39 @@
 #main {
     background-color: #263543c6;
     display: flex;
-    justify-content: space-around;
     align-items: center;
     text-align: center;
     border-radius: 10px;
-
-    margin-bottom: 30px;
+    justify-content: space-around;
 }
 #link a{
     font-family: "Montserrat";
     color: #fffff0;
     text-decoration : none;
-    font-size: 30px;
+    font-size: 35px;
 }
 #link{
     display: flex;
-    flex-direction: column;
-    width: 200px;
+    flex-direction: row;
+   /* width: 650px;
     border-radius: 15px;
     background-color:#614c61;
-    margin: 60px;
-    padding: 40px 0;
     box-shadow: 0px 0px 10px #b9bdc0;
+    */
+    padding: 20px 0;
 }
 #link :hover{
  font-style: italic;
  text-shadow: 0px 0px 15px #523752;
 }
+#main :hover{
+    background-color: chocolate;
+}
 .img{
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 10px;
-    width: 60px;
+    width: 50px;
 }
 @media screen and (max-width: 900px){
     #main{
@@ -43,10 +44,7 @@
         text-align: center;
     }
     #link{
-        border-radius: 10px;
-        background-color:#708090;
         margin: 20px;
-        box-shadow: 0px 0px 10px #b9bdc0;
     }
     
 }

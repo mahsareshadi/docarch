@@ -1,22 +1,22 @@
 import "./css/main-body.css";
+import { Link } from 'react-router-dom';
 function Box(props) {
     return (
-        <>
-        
-        <span id="link">
-            <img className="img" src={props.image} alt={props.alt}/>
-            <a href={props.link}>{props.children}</a>
-        </span>
-        </>
+            <div id="link">
+                <img className="img" src={props.image} alt={props.alt} />
+                <a href={props.link}>{props.children}</a>
+            </div>
     )
 }
 export default function Items() {
     return (
         <div id="main">
-            <Box link="#" image="./assets/inbox.png" alt="calendar">INBOX</Box>
-            <Box link="#" image="./assets/send.png" alt="calendar">SEND FILE</Box>
-            <Box link="#" image="./assets/to-do-list.png" alt="calendar">TO DO LIST</Box>
-            <Box link="#" image="./assets/calendar.png" alt="calendar">CALENDAR</Box>
+            <Link className="Link-tag" to="/inbox">
+                <Box link="#" image="./assets/files.png" alt="files">FILES</Box>
+            </Link>
+            <Link className="Link-tag" to="/task">
+                <Box link="#" image="./assets/to-do-list(2).png" alt="tasks">TASKS</Box>
+            </Link>
         </div>
     )
 }
