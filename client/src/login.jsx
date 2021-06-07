@@ -1,15 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/login.css";
-function Form (){
-    return(
-        <div id="border" >
-            <h1>Login</h1>
-        <form id="form-style">
-            <input placeholder="Username" />
-            <input placeholder="Password" type="password"/>
-            <button id="btn" type="submit">Login</button>
-        </form>
-        </div>
+import axios from 'axios';
+import {Link} from 'react-router-dom';
+
+
+
+
+
+
+function LoginForm() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+
+    function login() {
+        axios
+            .post("http://localhost:5001/login",
+                {
+                    username: username,
+                    password: password,
+                })
+            .then((response) => {
+                if (response) {
+                    
+                    console.log(response)
+                }
+            });
+    }
+
+    return (
+        <>
+            <div id="border" >
+                <h1>Login</h1>
+                <form id="form-style">
+                    <input className="login-input" type="text" placeholder="Username"
+                        onChange={(e) => {
+                            setUsername(e.target.value);
+                        }}
+                    />
+                    <input className="login-input" type="password" placeholder="Password"
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                        }}
+                    />
+                    <Link to='/home'>
+                        <button id="btn" onClick={login}>Login</button>
+                    </Link>
+                </form>
+
+
+            </div>
+        </>
     )
 }
-export default Form;
+export default LoginForm;
