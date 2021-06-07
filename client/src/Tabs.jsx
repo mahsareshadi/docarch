@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./css/Tab.css";
 import { Link } from "react-router-dom";
+import TodoList from './Todolist';
 
 function Tabs() {
     const [toggleState, setToggleState] = useState(1);
@@ -48,8 +49,8 @@ function Tabs() {
                     <h2>TO DO LIST</h2>
                     <hr />
                     <p>
-                        task list
-          </p>
+                        <TodoList></TodoList>
+                    </p>
                 </div>
             </div>
         </div>
