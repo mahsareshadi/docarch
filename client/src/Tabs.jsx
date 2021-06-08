@@ -13,7 +13,7 @@ function Tabs() {
     return (
         <div className="container">
             <div className="bloc-tabs">
-                <Link className="test-size" to="inbox">
+                <Link className="tab-size" to="inbox">
                     <button id="tab1"
                         className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
                         onClick={() => toggleTab(1)}
@@ -22,7 +22,7 @@ function Tabs() {
         </button>
                 </Link>
 
-                <Link className="test-size" to="/task">
+                <Link className="tab-size" to="/task">
                     <button id="tab2"
                         className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
                         onClick={() => toggleTab(2)}
