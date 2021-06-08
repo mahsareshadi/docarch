@@ -2,10 +2,10 @@
 import Header from "./header";
 import Tabs from "./Tabs";
 
-export default function Home() {
+export default function Home({ userinfo }) {
     return (
         <div className="Home">
-            <Header></Header>
+            <Header userinfo={userinfo}></Header>
             <Tabs></Tabs>
         </div>
     );

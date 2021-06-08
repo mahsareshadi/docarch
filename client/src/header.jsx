@@ -1,9 +1,12 @@
-import "./css/header.css"
-export default function Header(){
-    return(
+import "./css/header.css";
+
+export default function Header({ userinfo }) {
+
+
+    return (
         <div id="header">
-            HELLO DEAR USER ...
+            Hello
+            {" " + userinfo}
         </div>
     )
 }
- 

@@ -1,29 +1,29 @@
 import React, { useState } from "react";
 import "./css/login.css";
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
 
 
 
-function LoginForm() {
+function LoginForm({ setUserinfo }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
 
     function login() {
         axios
-            .post("http://localhost:5001/login",
+            .post("http://localhost:5000/login",
                 {
                     username: username,
                     password: password,
                 })
             .then((response) => {
-                if (response) {
-                    
-                    console.log(response)
+                if (response !== null) {
+                    setUserinfo(response.data[0].firstname + " " + response.data[0].lastname);
+
                 }
             });
     }
@@ -44,7 +44,7 @@ function LoginForm() {
                         }}
                     />
                     <Link to='/home'>
-                        <button id="btn" onClick={login}>Login</button>
+                        <button type="submit" id="btn" onClick={login}>Login</button>
                     </Link>
                 </form>
 
