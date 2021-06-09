@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Home from "./home.jsx"
 import LoginForm from "./login.jsx";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './header';
+import Tabs from './Tabs'
 
 
 function App() {
@@ -14,12 +15,11 @@ function App() {
   } else {
     return (
       <Router>
+        <Header userinfo={userinfo} ></Header>
         <div className="App">
           <Switch>
-            {/* <Route path="/" exact component={LoginForm} /> */}
-            <Route path="/home" exact component={() => <Home userinfo={userinfo} />} />
-            <Route path="/inbox" component={Home} />
-            <Route path="/task" component={Home} />
+            <Route path="/inbox" component={Tabs} />
+            <Route path="/task" component={Tabs} />
           </Switch>
         </div>
       </Router>
