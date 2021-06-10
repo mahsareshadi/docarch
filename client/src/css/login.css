@@ -13,7 +13,7 @@ body{
     box-shadow: 14px 10px 50px rgb(43, 14, 14);
     
 }
-h1{
+#login-h1{
     text-align: center;
     color: #fff;
     font-size: 60px;
