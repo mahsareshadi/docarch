@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import LoginForm from "./login.jsx";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './header';
-import Tabs from './Tabs'
-// import TabHeader from './TabHeader.jsx';
+// import Tabs from './Tabs'
+import TabButton from './test';
+import {FileRender} from './test2';
+import {TaskRender} from './test2';
 
 
 function App() {
@@ -17,11 +19,12 @@ function App() {
     return (
       <Router>
         <Header userinfo={userinfo} ></Header>
+        <TabButton></TabButton>
+
         <div className="App">
           <Switch>
-            {/* <Route path="/inbox" component={TabHeader} /> */}
-            <Route path="/inbox" component={Tabs} />
-            <Route path="/task"><Tabs userinfo={userinfo}></Tabs></Route>
+             <Route path="/inbox"><FileRender /></Route>
+            <Route path="/task"><TaskRender userinfo={userinfo}></TaskRender></Route>
           </Switch>
         </div>
       </Router>
