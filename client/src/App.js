@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import LoginForm from "./login.jsx";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './header';
-// import Tabs from './Tabs'
-import TabButton from './test';
-import {FileRender} from './test2';
-import {TaskRender} from './test2';
+import TabButton from './TabButton';
+import { FileRender } from './ContentRender';
+import { TaskRender } from './ContentRender';
 
 
 function App() {
@@ -23,7 +22,7 @@ function App() {
 
         <div className="App">
           <Switch>
-             <Route path="/inbox"><FileRender /></Route>
+            <Route path="/inbox"><FileRender /></Route>
             <Route path="/task"><TaskRender userinfo={userinfo}></TaskRender></Route>
           </Switch>
         </div>
