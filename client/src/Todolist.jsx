@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DolistInput from './DolistFormInput.jsx';
 import DoList from './DoList.jsx';
 
-function TodoList() {
+function TodoList({ userinfo }) {
 
     const [inputText, setInputText] = useState("");
     const [todos, setTodos] = useState([]);
@@ -23,18 +23,20 @@ function TodoList() {
             }
         }
         filterHandler();
-    }, [todos,status]);
+    }, [todos, status]);
 
 
 
     return (
         <>
-            <DolistInput inputText={inputText}
+            <DolistInput
+                userinfo={userinfo}
+                inputText={inputText}
                 todos={todos}
                 setTodos={setTodos}
                 setInputText={setInputText}
                 setStatus={setStatus}
-                
+
             >
             </DolistInput>
 

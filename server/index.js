@@ -17,7 +17,7 @@ app.post('/login', (req, res) => {
     const password = req.body.password;
 
     query(
-        `SELECT firstname , lastname FROM user WHERE username = ? AND password = ?`, [username, password],
+        `SELECT firstname , lastname , userid FROM user WHERE username = ? AND password = ?`, [username, password],
         (err, result) => {
             if (err) { console.log(err); }
 
@@ -42,18 +42,24 @@ app.post('/login', (req, res) => {
 
 //END LOGIN
 
-//START SHOW USER
-app.post('/home', (req, res) => {
-    query(
-        'SELECT firstname , lastname FROM user WHERE userid=2 ', (err, result) => {
-            if (err) { console.log(err); }
+//TASK
+    //add task
+    app.post('/addTask', (req, res) => {
+        const task = req.body.task;
+        const userid = req.body.id;
+        let value = [[task, userid]]
+        query('INSERT INTO task (task, userid) VALUES ?', [value], (err, result) => {
+            if (err) console.log(err);
+            console.log(result);
+        });
 
-            res.send(result);
-        }
+    }
     )
-})
-//END SHOW USER
 
+    //show tasks
+    
+
+//END TASK
 
 
 
