@@ -3,7 +3,7 @@ import "./css/Tab.css";
 import { Link } from "react-router-dom";
 import TodoList from './Todolist';
 
-function Tabs() {
+function Tabs({userinfo}) {
     const [toggleState, setToggleState] = useState(1);
 
     const toggleTab = (index) => {
@@ -34,22 +34,20 @@ function Tabs() {
 
             <div className="content-tabs">
                 <div
-                    className={toggleState === 1 ? "content  active-content" : "content"}
-                >
+                    className={toggleState === 1 ? "content  active-content" : "content"}>
                     <h2>INBOX</h2>
                     <hr />
                     <p>
                         file list
-          </p>
+                    </p>
                 </div>
 
                 <div
-                    className={toggleState === 2 ? "content  active-content" : "content"}
-                >
+                    className={toggleState === 2 ? "content  active-content" : "content"}>
                     <h2>TO DO LIST</h2>
                     <hr />
                     <p>
-                        <TodoList></TodoList>
+                        <TodoList userinfo={userinfo}></TodoList>
                     </p>
                 </div>
             </div>
