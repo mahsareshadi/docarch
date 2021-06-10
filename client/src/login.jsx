@@ -22,7 +22,8 @@ function LoginForm({ setUserinfo }) {
                 })
             .then((response) => {
                 if (response !== null) {
-                    setUserinfo(response.data[0].firstname + " " + response.data[0].lastname);
+                    setUserinfo(response.data[0]);
+                    // console.log(response);
 
                 }
             });
@@ -31,7 +32,7 @@ function LoginForm({ setUserinfo }) {
     return (
         <>
             <div id="border" >
-                <h1>Login</h1>
+                <h1 id="login-h1">Login</h1>
                 <form id="form-style">
                     <input className="login-input" type="text" placeholder="Username"
                         onChange={(e) => {
@@ -43,7 +44,7 @@ function LoginForm({ setUserinfo }) {
                             setPassword(e.target.value);
                         }}
                     />
-                    <Link to='/home'>
+                    <Link to='/inbox'>
                         <button type="submit" id="btn" onClick={login}>Login</button>
                     </Link>
                 </form>

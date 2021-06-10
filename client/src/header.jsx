@@ -6,7 +6,7 @@ export default function Header({ userinfo }) {
     return (
         <div id="header">
             Hello
-            {" " + userinfo}
+            {" " + userinfo.firstname + " " +userinfo.lastname}
         </div>
     )
 }
