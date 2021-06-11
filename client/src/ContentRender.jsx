@@ -1,5 +1,6 @@
 import "./css/ContentRender.css";
 import TodoList from './Todolist';
+import axios from 'axios';
 
 export function CreateContent({ title, children }) {
     return (
@@ -14,6 +15,7 @@ export function CreateContent({ title, children }) {
 }
 
 export function FileRender() {
+    
     return (
         <>
             <div className="content-tabs">
@@ -28,6 +30,12 @@ export function FileRender() {
 }
 
 export function TaskRender({ userinfo }) {
+    axios
+    .get('http://localhost:5000/task'
+    , {
+        id : userinfo.userid
+    })
+    .then((response)=>console.log(response))
     return (
         <div className="content-tabs">
             <CreateContent title="TASKS" tag='<hr />'>

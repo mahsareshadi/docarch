@@ -39,7 +39,6 @@ app.post('/login', (req, res) => {
 
 
 })
-
 //END LOGIN
 
 //TASK
@@ -57,6 +56,13 @@ app.post('/login', (req, res) => {
     )
 
     //show tasks
+    app.get('/task', (req,res)=>{
+        let id = req.id;
+        query('SELECT task FROM task WHERE userid = ?',[id],(err,result)=>{
+            if (err) console.log(err);
+            console.log(result)
+        });
+    })
     
 
 //END TASK
