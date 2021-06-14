@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/todolist.css';
-import uuid from 'react-uuid';
+import uuid from 'uuid';
 import axios from 'axios';
 
 function DolistInput({ userinfo,setInputText, todos, setTodos, inputText, setStatus }) {
@@ -12,7 +12,7 @@ function DolistInput({ userinfo,setInputText, todos, setTodos, inputText, setSta
     function submitTodoHandler(e) {
         e.preventDefault();
         setTodos([...todos,
-        { text: inputText, completed: false, id: uuid() }]);
+        { text: inputText, completed: false, id: uuid.v1() }]);
         setInputText("");
 
         axios
