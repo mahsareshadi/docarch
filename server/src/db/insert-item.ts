@@ -1,11 +1,11 @@
-const dbquery = require("./dbquery");
+import * as dbquery from "./dbquery";
 //const mysql = require('mysql');
 
 const query = dbquery.query;
 
 function insertIN() {
-    const sql= "INSERT INTO user (username,password,firstname,lastname) VALUES ? ";
-    const value = [
+    const sql : string= "INSERT INTO user (username,password,firstname,lastname) VALUES ? ";
+    const value : any[] = [
         ["mahsareshadi",123456789,"Mahsa","Reshadi"],
         ["minooathari",123456789,"Minoo","Athari"],
         ["aliahmadi",123456789,"Ali","Ahmadi"],

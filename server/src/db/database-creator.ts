@@ -1,18 +1,11 @@
-const dbquery = require("./dbquery");
-const mysql = require('mysql');
+import * as dbquery from "./dbquery";
+import mysql from 'mysql';
 
 const query = dbquery.query;
 
 function createDb() {
-    const con = mysql.createConnection(dbquery.serverConfig);
-    query(
-        "CREATE DATABASE IF NOT EXISTS docarch",
-        null,
-        () => {
-            con.end();
-        },
-        con
-    );
+    const con :mysql.Connection = mysql.createConnection(dbquery.serverConfig);
+    query("CREATE DATABASE IF NOT EXISTS docarch",[],con);
 }
 function createTables() {
     query("CREATE TABLE IF NOT EXISTS user (userid INT AUTO_INCREMENT , username VARCHAR(255) , password INT , firstname VARCHAR(255) , lastname VARCHAR(255) , INDEX (userid))");
@@ -21,9 +14,9 @@ function createTables() {
     query("CREATE TABLE IF NOT EXISTS usersfiles (id INT AUTO_INCREMENT PRIMARY KEY, fileid INT , userid INT , INDEX (fileid,userid) )");
 }
 
-function installDb() {
+export function installDb() {
     createDb();
     createTables();
 }
 
-installDb();
+
