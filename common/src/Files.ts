@@ -1,0 +1,4 @@
+interface Files{
+  fileId: number;
+  
+}
