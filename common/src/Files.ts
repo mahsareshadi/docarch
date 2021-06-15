@@ -1,4 +1,0 @@
-interface Files{
-  fileId: number;
-  
-}
