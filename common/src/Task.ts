@@ -1,5 +1,5 @@
-export interface Task{
-  insertId : number;
+export interface Task {
+  taskid : number;
   task : string;
-  userId : number;  
+  userid : number;  
 }
