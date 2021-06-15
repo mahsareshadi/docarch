@@ -1,8 +1,9 @@
 import "./css/ContentRender.css";
-import TodoList from './Todolist';
+import TodoList from './TodoList';
 import axios from 'axios';
+import { ReactNode } from "react";
 
-export function CreateContent({ title, children }) {
+export function CreateContent({ title, children }:{title: string, children: ReactNode}) {
     return (
 
         <div className="container">
@@ -29,16 +30,17 @@ export function FileRender() {
 
 }
 
-export function TaskRender({ userinfo }) {
+export function TaskRender({ userinfo }:number) {
     axios
-    .get('http://localhost:5000/task'
+    .get('http://localhost:5000/getTask'
     , {
-        id : userinfo.userid
+      userId : userinfo.userid
     })
-    .then((response)=>console.log(response))
+    .then((response)=>console.log(response));
+    
     return (
         <div className="content-tabs">
-            <CreateContent title="TASKS" tag='<hr />'>
+            <CreateContent title="TASKS">
                 <hr />
                 <TodoList userinfo={userinfo}></TodoList>
             </CreateContent>
