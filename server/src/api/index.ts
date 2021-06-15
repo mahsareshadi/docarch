@@ -1,7 +1,7 @@
-import { getTasks, getUser } from "../db";
+import { getTasks, getUser, saveTask } from "../db";
 import express from 'express';
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
 
 const app = express();
@@ -24,23 +24,21 @@ app.post('/login', async (req, res) => {
 });
 //END LOGIN
 
+
 //TASK
 //add task
 app.post('/addTask', (req, res) => {
-  const task = req.body.task;
-  const userid = req.body.id;
+  const task : string = req.body.task;
+  const userid : number = req.body.id;
   let value = [[task, userid]]
-  query('INSERT INTO task (task, userid) VALUES ?', [value], (err, result) => {
-    if (err) console.log(err);
-    console.log(result);
-  });
+  saveTask(value);
 
 }
-)
+);
 
 //show tasks
-app.get('/task', (req, res) => {
-  let id = req.id;
+app.get('/getTask', (req, res) => {
+  let id :number = req.userId;
   getTasks(id);
 })
 
