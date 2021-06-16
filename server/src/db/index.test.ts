@@ -7,7 +7,7 @@ function assert(cond: boolean, message: string): asserts cond {
     throw message;
   }
 }
-
+//task test
 async function test1() {
   let user = await db.getUser("wrongtest", "12345");
   assert(user === null, `Did not expected value`);
@@ -36,5 +36,6 @@ async function test1() {
   assert (affected !==null , `one task deleted `)
 
 }
-
 test1();
+//end task test
+

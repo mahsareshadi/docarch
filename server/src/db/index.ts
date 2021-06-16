@@ -25,7 +25,7 @@ export async function getUser(username: string, password: string): Promise<User 
     return null;
   }
 }
-
+//TASK
 export async function getTasks(userid: number): Promise<Task[] | null> {
   const result = selectFrom<Task>('SELECT * FROM task WHERE userid = ?', [userid]);
   if ((await result).length > 0) {
@@ -45,13 +45,20 @@ export async function deleteTask(task: Omit<Task, 'task'>) {
   const result = await deleteFrom('DELETE FROM task WHERE taskid = ?', [task.taskid]);
   return result.affectedRows;
 }
+//END TASK
 
 
-export async function saveFile(file: Omit<File , 'fileid'>) {
-  const result = await insertInto('INSERT INTO file (address) VALUES ?' , [file.address]);
+//FILE
+export async function uploadFile(file: Omit<File , 'fileid'>) {
+  const result = await insertInto('INSERT INTO uploadfile (address) VALUES ?' , [file.address]);
   return result.insertId;
 }
 
+export async function getUserFile(userid:number) {
+  const result = await selectFrom 
+  ("SELECT uploadfile.* FROM uploadfile JOIN usersfiles ON uploadfile.fileid = usersfiles.fileid where usersfiles.userid = ?",[userid]);
+  return result;
+}
 // export async function getFile(getfile : Userfiles) {
 //   const result = await selectFrom('SELECT ')
 // }
