@@ -1,12 +1,14 @@
-import { insertInto, query, selectFrom } from './dbquery';
+import { deleteFrom, insertInto, query, selectFrom } from './dbquery';
 import { User } from "../../../common/src/User";
 import { Task } from "../../../common/src/Task";
-import { installDb } from './database-creator';
-
-
-
-installDb();
-
+import { File } from "../../../common/src/File";
+import { Userfiles } from "../../../common/src/Userfiles";
+/**
+ * returns the user of the given username/password
+ * @param username 
+ * @param password 
+ * @returns 
+ */
 export async function getUser(username: string, password: string): Promise<User | null> {
   try {
     const result = await selectFrom<User>(
@@ -24,18 +26,32 @@ export async function getUser(username: string, password: string): Promise<User 
   }
 }
 
-export async function getTasks(userId: number): Promise<Task[] | null> {
-  const result = selectFrom<Task>('SELECT task FROM task WHERE userid = ?', [userId]);
+export async function getTasks(userid: number): Promise<Task[] | null> {
+  const result = selectFrom<Task>('SELECT * FROM task WHERE userid = ?', [userid]);
   if ((await result).length > 0) {
     return result;
   } else {
     console.log("no task found");
     return null;
   }
-
 }
 
-export async function saveTask(value: (string | number)[][]): Promise<number> {
-  const result = await insertInto('INSERT INTO task (task, userid) VALUES ?', [value]);
+export async function saveTask(task: Omit<Task, 'taskid'>): Promise<number> {
+  const result = await insertInto('INSERT INTO task (task, userid) VALUES (?)', [[task.task, task.userid]]);
   return result.insertId;
 }
+
+export async function deleteTask(task: Omit<Task, 'task'>) {
+  const result = await deleteFrom('DELETE FROM task WHERE taskid = ?', [task.taskid]);
+  return result.affectedRows;
+}
+
+
+export async function saveFile(file: Omit<File , 'fileid'>) {
+  const result = await insertInto('INSERT INTO file (address) VALUES ?' , [file.address]);
+  return result.insertId;
+}
+
+// export async function getFile(getfile : Userfiles) {
+//   const result = await selectFrom('SELECT ')
+// }

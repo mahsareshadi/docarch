@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+import * as mysql from 'mysql';
 
 export const serverConfig = {
   host: "localhost",

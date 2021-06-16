@@ -1,5 +1,5 @@
 import * as dbquery from "./dbquery";
-import mysql from 'mysql';
+import  * as mysql from 'mysql';
 
 const query = dbquery.query;
 
@@ -14,9 +14,10 @@ function createTables() {
     query("CREATE TABLE IF NOT EXISTS usersfiles (id INT AUTO_INCREMENT PRIMARY KEY, fileid INT , userid INT , INDEX (fileid,userid) )");
 }
 
-export function installDb() {
+export default function installDb() {
     createDb();
     createTables();
 }
 
+installDb();
 
