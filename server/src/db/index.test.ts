@@ -33,7 +33,11 @@ async function test1() {
   
 
   let affected = await db.deleteTask(foundTask);
-  assert (affected !==null , `one task deleted `)
+  assert (affected !==null , `one task deleted `);
+
+  let task = await db.getTasks(user.userid);
+    assert(task === null , `Did not expected value`)
+
 
 }
 test1();
