@@ -1,48 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import DolistInput from './DolistFormInput.jsx';
-import DoList from './DoList.jsx';
+import React, { ReactElement, useState } from 'react';
+import DolistInput from './DolistFormInput';
+import DoList from './DoList';
+import {Task} from "../../../common/src/Task";
+import { User } from '../../../common/src/User';
 
-function TodoList({ userinfo }) {
+interface Props{
+  userinfo:User;
+}
+function TodoList({ userinfo }: Props) : ReactElement{
 
-    const [inputText, setInputText] = useState("");
-    const [todos, setTodos] = useState([]);
-    const [status, setStatus] = useState('all');
-    const [filteredTodos, setFilteredTodos] = useState([]);
-
-
-    useEffect(() => {
-        function filterHandler() {
-            switch (status) {
-                case 'completed': setFilteredTodos(todos.filter(todo => todo.completed === true))
-                    break;
-                case 'uncompleted': setFilteredTodos(todos.filter(todo => todo.completed === false))
-                    break;
-                default:
-                    setFilteredTodos(todos);
-                    break;
-            }
-        }
-        filterHandler();
-    }, [todos, status]);
-
-
-
-    return (
-        <>
-            <DolistInput
-                userinfo={userinfo}
-                inputText={inputText}
-                todos={todos}
-                setTodos={setTodos}
-                setInputText={setInputText}
-                setStatus={setStatus}
-
-            >
-            </DolistInput>
-
-            <DoList setTodos={setTodos} todos={todos} filteredTodos={filteredTodos}></DoList>
-
-        </>
-    )
+  const [inputText, setInputText] = useState<string>("");
+  const [todo, setTodo] = useState<Task[]>([]);
+  return (
+    <>
+      <DolistInput
+        userinfo={userinfo}
+        inputText={inputText}
+        setInputText={setInputText}
+        todo={todo}
+        setTodo={setTodo}
+       />
+      {/* <DoList setTodo={setTodo} todo={todo} ></DoList> */}
+    </>
+  )
 };
 export default TodoList;

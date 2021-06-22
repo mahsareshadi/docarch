@@ -1,53 +1,47 @@
-import React from 'react';
-import './css/todolist.css';
-import uuid from 'uuid';
-import axios from 'axios';
+import React, { ChangeEvent, MouseEvent, useRef } from 'react';
+import { Task } from '../../../common/src/Task';
+import { User } from '../../../common/src/User';
+import '../css/todolist.css';
 
-function DolistInput({ userinfo,setInputText, todos, setTodos, inputText, setStatus }) {
+interface Props {
+  userinfo: User,
+  inputText: string,
+  setInputText(text: string): void,
+  todo: Task[],
+  setTodo(task: Task[]): void
+}
 
-    function inputTextHandler(e) {
-        setInputText(e.target.value);
+function DolistInput({ userinfo, inputText, setInputText, todo, setTodo }: Props) {
 
-    }
-    function submitTodoHandler(e) {
-        e.preventDefault();
-        setTodos([...todos,
-        { text: inputText, completed: false, id: uuid.v1() }]);
-        setInputText("");
+  // function inputTextHandler(e: ChangeEvent<HTMLInputElement>): void {
+  //   setInputText(e.target.value);
+  // }
 
-        axios
-        .post("http://localhost:5000/addTask",
-        {
-            task : inputText,
-            id : userinfo.userid,
-        }
-
-        ) 
-        // console.log(todos);
-    }
-    function statusHandler(e) {
-        setStatus(e.target.value);
+  let textInput = useRef<HTMLInputElement>(null);
+  function addTask(e: any) {
+    e.preventDefault();
+    if (textInput.current) {
+      setInputText(textInput.current.value);
+      console.log(inputText)
     }
 
-    return (
+    const newTask = { taskid: 6, task: inputText, userid: userinfo.userid }
+    setTodo([...todo, newTask]);
+    setInputText("");
+  }
 
-        <form>
 
-            <input value={inputText} onChange={inputTextHandler} type="text" className="todo-input" />
-            <button onClick={submitTodoHandler} className="todo-button , form-btn" type="submit">
-                <i className="fa">&#xf0fe;</i>
-            </button>
+  return (
 
-            <div className="select">
-                <select onChange={statusHandler} name="todos" className="filter-todo">
-                    <option value="all">All</option>
-                    <option value="completed">Completed</option>
-                    <option value="uncompleted">Uncompleted</option>
-                </select>
-            </div>
-        </form>
+    <form>
+      <input ref={textInput} type="text" className="todo-input" />
 
-    );
+      <button onClick={addTask} className="todo-button , form-btn" type="submit">
+        <i className="fa">&#xf0fe;</i>
+      </button>
+    </form>
+
+  );
 
 }
 
