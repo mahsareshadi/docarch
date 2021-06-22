@@ -29,7 +29,7 @@ export function TodoApp() {
   return (
     <>
       <div className="form">
-        <input value={task} type="text" placeholder="task ..." className="todo-input" onChange={handlechange} />
+        <input value={task} type="text" placeholder="Type Your Task Here ..." className="todo-input" onChange={handlechange} />
         <button className="todo-button , form-btn" type="submit" onClick={addtask}><i className="fa">&#xf0fe;</i></button>
       </div>
       <div className="list-of-todos">
