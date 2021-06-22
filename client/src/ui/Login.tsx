@@ -1,33 +1,19 @@
 import React, { useState } from "react";
-import "./css/login.css";
-import axios from 'axios';
+import "../css/login.css";
 import { Link } from 'react-router-dom';
+import {getUser} from '../api/index';
 
 
 
 
 
 
-function LoginForm({ setUserinfo }) {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+function LoginForm({ setUserinfo}:any) {
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
 
-    function login() {
-        axios
-            .post("http://localhost:5000/login",
-                {
-                    username: username,
-                    password: password,
-                })
-            .then((response) => {
-                if (response !== null) {
-                    setUserinfo(response.data[0]);
-                    // console.log(response);
-
-                }
-            });
-    }
+    
 
     return (
         <>
@@ -45,7 +31,7 @@ function LoginForm({ setUserinfo }) {
                         }}
                     />
                     <Link to='/inbox'>
-                        <button type="submit" id="btn" onClick={login}>Login</button>
+                        <button type="submit" id="btn" onClick={getUser}>Login</button>
                     </Link>
                 </form>
 
