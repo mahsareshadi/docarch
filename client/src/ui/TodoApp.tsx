@@ -21,6 +21,11 @@ export function TodoApp() {
     setTask("");
   }
 
+  function completed(done:string){
+    setTodolist(todolist.filter((task)=>{
+      return task.taskname != done
+    }))
+  }
   return (
     <>
       <div className="form">
@@ -31,7 +36,7 @@ export function TodoApp() {
         <div className="todo-container">
           <ul className='todo-list'>
             {todolist.map((task: Itask, key: number) => {
-              return <Tasks key={key} task={task} />
+              return <Tasks completed={completed} key={key} task={task} />
             })}
           </ul>
         </div>
