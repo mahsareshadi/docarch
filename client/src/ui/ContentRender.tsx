@@ -1,49 +1,45 @@
-import "./css/ContentRender.css";
-import TodoList from './TodoList';
-import axios from 'axios';
+import "../css/ContentRender.css";
 import { ReactNode } from "react";
+import {TodoApp} from './TodoApp'
 
-export function CreateContent({ title, children }:{title: string, children: ReactNode}) {
-    return (
+import { User } from "../../../common/src/User";
+interface Props{
+  userinfo:User,
+}
 
-        <div className="container">
-            <div className="content  active-content">
-                <h2>{title}</h2>
-                <p>{children}</p>
-            </div>
-        </div>
-    )
+export function CreateContent({ title, children }: { title: string, children: ReactNode }) {
+  return (
+
+    <div className="container">
+      <div className="content  active-content">
+        <h2>{title}</h2>
+        <p>{children}</p>
+      </div>
+    </div>
+  )
 }
 
 export function FileRender() {
-    
-    return (
-        <>
-            <div className="content-tabs">
-                <CreateContent title="INBOX">
-                    <hr />
-            file list
+
+  return (
+    <>
+      <div className="content-tabs">
+        <CreateContent title="INBOX">
+          <hr />
+          file list
         </CreateContent>
-            </div>
-        </>
-    );
+      </div>
+    </>
+  );
 
 }
-
-export function TaskRender({ userinfo }:number) {
-    axios
-    .get('http://localhost:5000/getTask'
-    , {
-      userId : userinfo.userid
-    })
-    .then((response)=>console.log(response));
-    
-    return (
-        <div className="content-tabs">
-            <CreateContent title="TASKS">
-                <hr />
-                <TodoList userinfo={userinfo}></TodoList>
-            </CreateContent>
-        </div>
-    )
+export function TaskRender({ userinfo }:Props) {
+  return (
+    <div className="content-tabs">
+      <CreateContent title="TASKS">
+        <hr />
+        <TodoApp/>
+      </CreateContent>
+    </div>
+  )
 }
