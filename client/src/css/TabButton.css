@@ -7,6 +7,7 @@
     padding: 0;
   }
   .tab-container{
+    
     display: flex;
     flex-direction: column;
     position: relative;
@@ -22,6 +23,7 @@
     display: flex;
 }
 .tabs {
+ 
   padding: 0px;
   text-align: center;
   width: 100%;
@@ -54,6 +56,7 @@
   
   
   #tab1 , #tab2{
+    
     outline: none;
     border: none;
     height: 60px;

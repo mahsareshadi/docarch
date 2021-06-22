@@ -9,15 +9,21 @@
   
   
   header,
-  form {
+  .form {
     min-height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  form input,
+  .list-of-todos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .todo-input,
   .form-btn {
-    height: 48px;
+    height:  60px;
     outline: none;
     border-radius: 0px;
     padding: 0.5rem;
@@ -25,11 +31,18 @@
     border: none;
     background: white;
   }
+  .todo-input{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 500px;
+  }
   .form-btn {
     color: #2c3a479f;
-    background: #f7fffe;
+    background: #a9a7d39f;
     cursor: pointer;
     transition: all 0.3s ease;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
   .form-btn:hover {
     background: #2c3a479f;
@@ -63,9 +76,8 @@
     flex: 1;
   }
   
-  .trash-btn,
-  .complete-btn {
-    background: #2c3a479f;
+  .done-btn{
+    background: #806b96c2;
     width: 70px;
     color: white;
     border: none;
@@ -74,10 +86,9 @@
     font-size: 1rem;
     border-radius: 0px; 
   }
-  .complete-btn {
-    background: #2b6ca9af;
-  }
+  
   .todo-item {
+    width: 350px;
     padding: 0rem 0.5rem;
   }
   
@@ -91,46 +102,6 @@
     opacity: 0;
   }
   
-  .completed {
-    text-decoration: line-through;
-    opacity: 0.7;
-
-  }
-  
-  /*CUSTOM SELECTOR */
-  select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    outline: 0;
-    box-shadow: none;
-    border: 0 !important;
-    background-image: none;
-  }
-  
-  /* Custom Select */
-  .select {
-    margin: 1rem;
-    position: relative;
-    overflow: hidden;
-  }
-  select {
-    color: #2c3a479f;
-    cursor: pointer;
-    width: 12rem;
-  }
-  /* Arrow */
-  .select::after {
-    content: "\25BC";
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 1rem;
-    background: #2c3a479f;
-    cursor: pointer;
-    pointer-events: none;
-  }
   @media screen and (max-width: 900px){
     form {
         min-height: 20vh;
@@ -144,9 +115,4 @@
       } 
       
   }
-  /* Transition */
-  /*
-  .select:hover::after {
-    transform: scale(1.5);
-  }
-  */
+  

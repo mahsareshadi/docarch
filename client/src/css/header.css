@@ -10,7 +10,7 @@
     color: lightcyan;
     font-style: italic;
     margin: 0 auto 5px;
-
+    
 }
 @media screen and (max-width: 900px){
     #header{
