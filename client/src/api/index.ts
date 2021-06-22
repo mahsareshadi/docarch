@@ -1,12 +1,12 @@
-import {User} from "../../../common/src/User";
-import {Task} from "../../../common/src/Task";
-// import axios from 'axios';
+import { User } from "../../../common/src/User";
+import { Task } from "../../../common/src/Task";
+import axios from 'axios';
 
 export function getUser(): User {
   return {
     userid: 2,
     firstname: "mahsa",
-    lastname:"reshadi"
+    lastname: "reshadi"
   }
   // axios
   // .post("http://localhost:5000/login",
@@ -23,19 +23,24 @@ export function getUser(): User {
   // });
 }
 
-var tasks : Task[] = [];
+var tasks: Task[] = [];
 
 
 
-export function saveTask2(task :Task ) {
-  return tasks.push(task)
-  
-} 
+export function saveTask(task: Omit<Task,"taskid">) {
+  // return tasks.push(task)
+  axios
+    .post("http://localhost:5000/saveTask",
+      {
+        task: task.task,
+        id: task.userid,
+      }).then((response:any)=>console.log(response))
+}
 
 export function getTask(): Task[] {
   return tasks;
 }
-export function deleteTask(task:Task) {
+export function deleteTask(task: Task) {
   return tasks.pop();
 }
 

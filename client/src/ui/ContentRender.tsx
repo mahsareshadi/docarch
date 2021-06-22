@@ -38,7 +38,7 @@ export function TaskRender({ userinfo }:Props) {
     <div className="content-tabs">
       <CreateContent title="TASKS">
         <hr />
-        <TodoApp/>
+        <TodoApp userinfo={userinfo} />
       </CreateContent>
     </div>
   )
