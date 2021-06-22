@@ -1,11 +1,11 @@
 import { useState } from "react";
-import "./css/TabButton.css";
+import "../css/TabButton.css";
 import { Link } from "react-router-dom";
 // import TodoList from './Todolist';
 
-function CreateBtn(props) {
+function CreateBtn(props:any) {
     const [toggleState, setToggleState] = useState("1");
-    const toggleTab = (index) => {
+    const toggleTab = (index : any) => {
         setToggleState(index);
     };
     

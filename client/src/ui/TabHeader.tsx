@@ -1,8 +1,8 @@
 import React , {useState} from 'react';
 // import {Link} from 'react-router-dom';
-import './css/Tabnew.css';
+import '../css/Tabnew.css';
 
-function CreateTabHeader(props){
+function CreateTabHeader(props : any){
     
     return (
         <div className="btn-container">

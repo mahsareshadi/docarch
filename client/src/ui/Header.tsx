@@ -1,6 +1,6 @@
-import "./css/header.css";
+import "../css/header.css";
 
-export default function Header({ userinfo }) {
+export default function Header({ userinfo }:any) {
     return (
         <div id="header">
             Hello

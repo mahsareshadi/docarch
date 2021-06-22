@@ -1,12 +1,12 @@
 import { useState } from "react";
-import "./css/Tab.css";
+import "../css/Tab.css";
 import { Link } from "react-router-dom";
 import TodoList from './TodoList';
 
-function Tabs({userinfo}) {
+function Tabs({userinfo}:any) {
     const [toggleState, setToggleState] = useState(1);
 
-    const toggleTab = (index) => {
+    const toggleTab = (index :any) => {
         setToggleState(index);
     };
 
