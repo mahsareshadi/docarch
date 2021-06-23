@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import { useState } from 'react'
 import { Tasks } from './Tasks';
-import {saveTask} from '../api/index';
+import { saveTask , deleteTask} from '../api/index';
 import '../css/todolist.css';
 import { User } from '../../../common/src/User';
 import { Task } from '../../../common/src/Task';
@@ -14,18 +14,26 @@ interface Props {
   userinfo: User;
 }
 export function TodoApp({ userinfo }: Props) {
+
   const [task, setTask] = useState<string>("");
   const [todolist, setTodolist] = useState<Task[]>([]);
+
+
+
 
   function handlechange(event: ChangeEvent<HTMLInputElement>) {
     setTask(event.target.value);
   }
 
   function addtask() {
-    const newtask = { taskid: -1 ,task: task,  userid:userinfo.userid}
+    const newtask = { taskid: -1, task: task, userid: userinfo.userid }
     setTodolist([...todolist, newtask]);
     setTask("");
-    const insertId=saveTask(newtask);
+    saveTask(newtask).then(response => {
+      const insertid = response.data;
+      newtask.taskid=insertid;
+    });
+
   }
 
   function completed(done: string) {

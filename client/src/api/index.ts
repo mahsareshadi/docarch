@@ -27,20 +27,32 @@ var tasks: Task[] = [];
 
 
 
-export function saveTask(task: Omit<Task,"taskid">) {
-  // return tasks.push(task)
-  axios
+export async function saveTask(task: Omit<Task, "taskid">) {
+  return axios
     .post("http://localhost:5000/saveTask",
       {
         task: task.task,
         id: task.userid,
-      }).then((response:any)=>console.log(response))
+      })
+  // .then((response: any) => { console.log(response.data) })
 }
 
+
+
+
 export function getTask(): Task[] {
+
+  axios
+    .get("http://localhost:5000/getTask")
+    .then((response) => response.data)
+
   return tasks;
 }
 export function deleteTask(task: Task) {
-  return tasks.pop();
+  axios
+  .post("http://localhost:5000/deleteTask",
+  {
+    taskid:task.taskid,
+    userid:task.userid
+  })
 }
-

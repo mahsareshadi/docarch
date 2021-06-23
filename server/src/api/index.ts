@@ -36,7 +36,7 @@ app.post('/saveTask', async (req, res) => {
     res.write("task dosent save");
   } else {
     //it is insert id
-    res.writeHead(200).send(taskInsertid);
+    res.send(taskInsertid+"");
   }
 
 }
@@ -49,7 +49,7 @@ app.get('/getTask', async (req, res) => {
   if (usertask === null) {
     res.write("user has no task")
   } else {
-    res.writeHead(200).send(usertask);
+    res.send(usertask);
   }
 })
 
