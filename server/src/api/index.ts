@@ -36,15 +36,13 @@ app.post('/saveTask', async (req, res) => {
     res.write("task dosent save");
   } else {
     //it is insert id
-    res.send(taskInsertid+"");
+    res.send(taskInsertid + "");
   }
-
-}
-);
+});
 
 //show tasks
 app.get('/getTask', async (req, res) => {
-  let id: number = req.body.userid;
+  let id: number = Number(req.query.userid);
   const usertask = await db.getTasks(id);
   if (usertask === null) {
     res.write("user has no task")
@@ -60,9 +58,8 @@ app.delete('/deleteTask', async (req, res) => {
   const deleteTask = await db.deleteTask({ taskid, userid });
   if (deleteTask === null) {
     res.write("no task deleted")
-  }
-  else {
-    res.send(deleteTask+"")
+  } else {
+    res.send(deleteTask + "")
     // res.writeHead(200).write("one task deleted");
   }
 })
