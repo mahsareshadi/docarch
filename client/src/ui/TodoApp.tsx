@@ -1,25 +1,24 @@
-import React, { ChangeEvent, FormEvent } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect } from 'react'
 import { useState } from 'react'
 import { Tasks } from './Tasks';
-import { saveTask, deleteTask } from '../api/index';
+import { saveTask, deleteTask, getTask } from '../api/index';
 import '../css/todolist.css';
 import { User } from '../../../common/src/User';
 import { Task } from '../../../common/src/Task';
 
-export interface Itask {
-  taskname: string;
-  taskid: number
-}
+
 interface Props {
   userinfo: User;
 }
 export function TodoApp({ userinfo }: Props) {
-
   const [task, setTask] = useState<string>("");
   const [todolist, setTodolist] = useState<Task[]>([]);
-
-
-
+  
+  useEffect(()=>
+  function showtask(){
+    getTask(userinfo.userid).then(response=>{setTodolist(response)
+    console.log(todolist);
+    })}, []);
 
   function handlechange(event: ChangeEvent<HTMLInputElement>) {
     setTask(event.target.value);
@@ -35,7 +34,6 @@ export function TodoApp({ userinfo }: Props) {
       newtask.taskid = insertid;
       console.log(newtask.taskid);
     });
-
   }
 
   function completed(done: number) {
@@ -48,6 +46,8 @@ export function TodoApp({ userinfo }: Props) {
     }));
   }
 
+
+
   return (
     <>
       {/* INPUT */}
@@ -56,8 +56,9 @@ export function TodoApp({ userinfo }: Props) {
         <button className="todo-button , form-btn" type="submit" onClick={addtask}><i className="fa">&#xf0fe;</i></button>
       </form>
       {/* LIST */}
-      
+
       <div className="list-of-todos">
+
         <div className="todo-container">
           <ul className='todo-list'>
             {todolist.map((task: Task, key: number) => {
