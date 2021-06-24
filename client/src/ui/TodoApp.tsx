@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, MouseEventHandler } from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
 import { Tasks } from './Tasks';
 import { saveTask, deleteTask } from '../api/index';
@@ -39,8 +39,8 @@ export function TodoApp({ userinfo }: Props) {
   }
 
   function completed(done: number) {
-    const value = todolist.filter((task) => { return task.taskid == done });
-    if (value.length == 1) {
+    const value = todolist.filter((task) => { return task.taskid === done });
+    if (value.length === 1) {
       deleteTask(value[0]);
     }
     setTodolist(todolist.filter((task) => {
