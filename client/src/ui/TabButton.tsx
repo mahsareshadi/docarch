@@ -2,10 +2,16 @@ import { useState } from "react";
 import "../css/TabButton.css";
 import { Link } from "react-router-dom";
 // import TodoList from './Todolist';
+interface Props{
+  to : string,
+  id: string,
+  toggle:number,
+  children:string
 
-function CreateBtn(props:any) {
-    const [toggleState, setToggleState] = useState("1");
-    const toggleTab = (index : any) => {
+}
+function CreateBtn(props:Props) {
+    const [toggleState, setToggleState] = useState<number>(1);
+    const toggleTab = (index : number) => {
         setToggleState(index);
     };
     
@@ -14,7 +20,7 @@ function CreateBtn(props:any) {
                 
             <Link className="tab-size" to={props.to}>
                 <button id={props.id} className={toggleState === props.toggle ? "tabs active-tabs" : "tabs"}
-                    onClick={() => toggleTab(props.toggle)}>
+                    onClick={() => setToggleState(props.toggle)}>
                     {props.children}
                 </button>
             </Link>
@@ -29,7 +35,7 @@ export default function TabButton() {
                 <CreateBtn
                     to="/inbox"
                     id="tab1"
-                    toggle="1"
+                    toggle={1}
                 >
                     FILES
                 </CreateBtn>
@@ -37,7 +43,7 @@ export default function TabButton() {
                 <CreateBtn
                     to="/task"
                     id="tab2"
-                    toggle="2"
+                    toggle={2}
                 >
                     TASKS
                 </CreateBtn>
