@@ -9,7 +9,7 @@ import { User } from '../../../common/src/User';
 
 
 function App() {
-  const [userinfo, setUserinfo] = useState<User>({firstname:"test",lastname:"test",userid:-1});
+  const [userinfo, setUserinfo] = useState<User>({firstname:"test",lastname:"test",userid:123});
 
 
   return (
