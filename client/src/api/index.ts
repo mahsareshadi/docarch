@@ -38,12 +38,11 @@ export async function saveTask(task: Omit<Task, "taskid">) {
 }
 
 
-export function getTask(id: number): Task[] {
-  axios
+export async function getTask(id: number) {
+  return axios
     .get("http://localhost:5000/getTask", {
-      data:{ userid: id}
-    })
-  return tasks
+      params: { userid: id }
+    }).then((response: any) => response.data);
 }
 
 
@@ -51,7 +50,9 @@ export async function deleteTask(task: Task) {
   return axios
     .delete("http://localhost:5000/deleteTask",
       {
-       data:{ taskid: task.taskid,
-        userid: task.userid}
+        data: {
+          taskid: task.taskid,
+          userid: task.userid
+        }
       })
 }
