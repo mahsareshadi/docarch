@@ -38,19 +38,20 @@ export async function saveTask(task: Omit<Task, "taskid">) {
 }
 
 
-export function getTask(): Task[] {
-
+export function getTask(id: number): Task[] {
   axios
-    .get("http://localhost:5000/getTask")
-    .then((response) => response.data)
-
-  return tasks;
+    .get("http://localhost:5000/getTask", {
+      data:{ userid: id}
+    })
+  return tasks
 }
+
+
 export async function deleteTask(task: Task) {
   return axios
-  .post("http://localhost:5000/deleteTask",
-  {
-    taskid:task.taskid,
-    userid:task.userid
-  })
+    .delete("http://localhost:5000/deleteTask",
+      {
+       data:{ taskid: task.taskid,
+        userid: task.userid}
+      })
 }
