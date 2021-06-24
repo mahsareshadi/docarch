@@ -13,6 +13,7 @@ export function CreateContent({ title, children }: { title: string, children: Re
     <div className="container">
       <div className="content  active-content">
         <h2>{title}</h2>
+        <hr />
         <p>{children}</p>
       </div>
     </div>
@@ -25,7 +26,6 @@ export function FileRender() {
     <>
       <div className="content-tabs">
         <CreateContent title="INBOX">
-          <hr />
           file list
         </CreateContent>
       </div>
@@ -37,7 +37,6 @@ export function TaskRender({ userinfo }:Props) {
   return (
     <div className="content-tabs">
       <CreateContent title="TASKS">
-        <hr />
         <TodoApp userinfo={userinfo} />
       </CreateContent>
     </div>

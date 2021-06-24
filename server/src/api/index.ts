@@ -54,7 +54,7 @@ app.get('/getTask', async (req, res) => {
 })
 
 //delete task
-app.delete('/deleteTask', async (req, res) => {
+app.post('/deleteTask', async (req, res) => {
   const taskid: number = req.body.taskid;
   const userid: number = req.body.userid;
   const deleteTask = await db.deleteTask({ taskid, userid });
@@ -62,7 +62,8 @@ app.delete('/deleteTask', async (req, res) => {
     res.write("no task deleted")
   }
   else {
-    res.writeHead(200).write("one task deleted");
+    res.send(deleteTask+"")
+    // res.writeHead(200).write("one task deleted");
   }
 })
 

@@ -38,8 +38,6 @@ export async function saveTask(task: Omit<Task, "taskid">) {
 }
 
 
-
-
 export function getTask(): Task[] {
 
   axios
@@ -48,8 +46,8 @@ export function getTask(): Task[] {
 
   return tasks;
 }
-export function deleteTask(task: Task) {
-  axios
+export async function deleteTask(task: Task) {
+  return axios
   .post("http://localhost:5000/deleteTask",
   {
     taskid:task.taskid,
