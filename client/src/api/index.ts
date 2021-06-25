@@ -1,13 +1,16 @@
 import { User } from "../../../common/src/User";
 import { Task } from "../../../common/src/Task";
 import axios from 'axios';
-
-export function getUser(): User {
-  return {
-    userid: 2,
-    firstname: "mahsa",
-    lastname: "reshadi"
+let currentUser: User | null = null;
+export async function getUser(): Promise<User> {
+  if (!currentUser) {
+    currentUser = {
+      userid: 123,
+      firstname: "mahsa",
+      lastname: "reshadi"
+    }
   }
+  
   // axios
   // .post("http://localhost:5000/login",
   //     {
@@ -21,10 +24,8 @@ export function getUser(): User {
 
   //     }
   // });
+  return currentUser;
 }
-
-var tasks: Task[] = [];
-
 
 
 export async function saveTask(task: Omit<Task, "taskid">) {
@@ -38,13 +39,26 @@ export async function saveTask(task: Omit<Task, "taskid">) {
 }
 
 
-export async function getTask(id: number) {
+async function getTask(id: number): Promise<Task[]> {
   return axios
     .get("http://localhost:5000/getTask", {
       params: { userid: id }
     }).then((response: any) => response.data);
 }
 
+let tasks: Promise<Task[]> | null = null;
+export async function getUserTasks() {
+  if (!tasks) {
+    tasks = getTask((await getUser()).userid);
+    tasks.then(() => {
+      setTimeout(() => {
+        tasks = null;
+      }, 100);
+    });
+  }
+  return tasks
+
+}
 
 export async function deleteTask(task: Task) {
   return axios

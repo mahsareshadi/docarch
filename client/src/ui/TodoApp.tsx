@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useEffect } from 'react'
 import { useState } from 'react'
 import { Tasks } from './Tasks';
-import { saveTask, deleteTask, getTask } from '../api/index';
+import { saveTask, deleteTask, getUserTasks } from '../api/index';
 import '../css/todolist.css';
 import { User } from '../../../common/src/User';
 import { Task } from '../../../common/src/Task';
@@ -13,12 +13,13 @@ interface Props {
 export function TodoApp({ userinfo }: Props) {
   const [task, setTask] = useState<string>("");
   const [todolist, setTodolist] = useState<Task[]>([]);
-  
-  useEffect(()=>
-  function showtask(){
-    getTask(userinfo.userid).then(response=>{setTodolist(response)
-    console.log(todolist);
-    })}, []);
+
+  useEffect(() => {
+    getUserTasks().then(response => {
+      setTodolist(response)
+      console.log(todolist);
+    });
+  }, [todolist]);
 
   function handlechange(event: ChangeEvent<HTMLInputElement>) {
     setTask(event.target.value);
@@ -46,6 +47,11 @@ export function TodoApp({ userinfo }: Props) {
     }));
   }
 
+  // function showtask() {
+  //   getTask(userinfo.userid).then(response => {
+  //     setTodolist(response);
+  //     console.log(todolist)
+  //   })}
 
 
   return (
@@ -58,7 +64,7 @@ export function TodoApp({ userinfo }: Props) {
       {/* LIST */}
 
       <div className="list-of-todos">
-
+        {/* <button onClick={showtask}>show my task</button> */}
         <div className="todo-container">
           <ul className='todo-list'>
             {todolist.map((task: Task, key: number) => {
