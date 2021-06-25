@@ -2,31 +2,25 @@ import { User } from "../../../common/src/User";
 import { Task } from "../../../common/src/Task";
 import axios from 'axios';
 let currentUser: User | null = null;
-export async function getUser(): Promise<User> {
-  if (!currentUser) {
-    currentUser = {
-      userid: 123,
-      firstname: "mahsa",
-      lastname: "reshadi"
-    }
-  }
-  
-  // axios
-  // .post("http://localhost:5000/login",
-  //     {
-  //         username: username,
-  //         password: password,
-  //     })
-  // .then((response) => {
-  //     if (response !== null) {
-  //         setUserinfo(response.data[0]);
-  //         // console.log(response);
+export async function getUser(username?: string, password?: string): Promise<User> {
+  // if (!currentUser) {
+  //   currentUser = {
+  //     userid: 123,
+  //     firstname: "mahsa",
+  //     lastname: "reshadi"
+  //   }
+  // }
 
-  //     }
-  // });
-  return currentUser;
+  return axios
+    .get("http://localhost:5000/userLogin", {
+      params: {
+        username: username,
+        password: password,
+      }
+    }).then((response: any) => currentUser = response.data);
+
+  // return currentUser;
 }
-
 
 export async function saveTask(task: Omit<Task, "taskid">) {
   return axios
@@ -49,7 +43,7 @@ async function getTask(id: number): Promise<Task[]> {
 let tasks: Promise<Task[]> | null = null;
 export async function getUserTasks() {
   if (!tasks) {
-    tasks = getTask((await getUser()).userid);
+    tasks = getTask((await getUser("mahsareshadi", "123456789")).userid);
     tasks.then(() => {
       setTimeout(() => {
         tasks = null;
@@ -57,9 +51,7 @@ export async function getUserTasks() {
     });
   }
   return tasks
-
 }
-
 export async function deleteTask(task: Task) {
   return axios
     .delete("http://localhost:5000/deleteTask",

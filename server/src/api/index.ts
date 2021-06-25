@@ -11,12 +11,12 @@ app.get("/", (req, res) => {
 })
 
 //START LOGIN
-app.post('/login', async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+app.get('/userLogin', async (req, res) => {
+  const username = String( req.query.username);
+  const password = String( req.query.password);
   const user = await db.getUser(username, password);
   if (user === null) {
-    res.writeHead(500);
+    // res.writeHead(500);
     res.write("user not found")
   } else {
     res.send(user);
