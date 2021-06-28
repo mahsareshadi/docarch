@@ -18,7 +18,7 @@ export async function getUser(username?: string, password?: string): Promise<Use
         password: password,
       }
     }).then((response: any) => currentUser = response.data);
-
+  
   // return currentUser;
 }
 
@@ -43,14 +43,15 @@ async function getTask(id: number): Promise<Task[]> {
 let tasks: Promise<Task[]> | null = null;
 export async function getUserTasks() {
   if (!tasks) {
-    tasks = getTask((await getUser("mahsareshadi", "123456789")).userid);
+    if (currentUser!==null){
+    tasks = getTask(currentUser.userid);
     tasks.then(() => {
       setTimeout(() => {
         tasks = null;
       }, 100);
     });
-  }
-  return tasks
+  }  return tasks
+}
 }
 export async function deleteTask(task: Task) {
   return axios

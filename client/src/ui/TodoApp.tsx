@@ -16,8 +16,9 @@ export function TodoApp({ userinfo }: Props) {
 
   useEffect(() => {
     getUserTasks().then(response => {
+      if (response){
       setTodolist(response)
-      console.log(todolist);
+      console.log(todolist);}
     });
   }, [todolist]);
 
