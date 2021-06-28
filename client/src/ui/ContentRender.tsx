@@ -1,10 +1,10 @@
 import "../css/ContentRender.css";
 import { ReactNode } from "react";
-import {TodoApp} from './TodoApp'
+import { TodoApp } from './TodoApp'
 
 import { User } from "../../../common/src/User";
-interface Props{
-  userinfo:User,
+interface Props {
+  userinfo: User,
 }
 
 export function CreateContent({ title, children }: { title: string, children: ReactNode }) {
@@ -33,7 +33,7 @@ export function FileRender() {
   );
 
 }
-export function TaskRender({ userinfo }:Props) {
+export function TaskRender({ userinfo }: Props) {
   return (
     <div className="content-tabs">
       <CreateContent title="TASKS">

@@ -32,8 +32,8 @@ function LoginForm({ setUserinfo }: any) {
           />
           <Link to='/inbox'>
             <button type="submit" id="btn"
-             onClick={() => getUser(username, password).then((response)=>setUserinfo(response))}>
-               Login</button>
+              onClick={() => getUser(username, password).then((response) => setUserinfo(response))}>
+              Login</button>
           </Link>
         </form>
 

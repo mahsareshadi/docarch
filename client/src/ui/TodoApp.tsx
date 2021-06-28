@@ -6,7 +6,6 @@ import '../css/todolist.css';
 import { User } from '../../../common/src/User';
 import { Task } from '../../../common/src/Task';
 
-
 interface Props {
   userinfo: User;
 }
@@ -16,9 +15,10 @@ export function TodoApp({ userinfo }: Props) {
 
   useEffect(() => {
     getUserTasks().then(response => {
-      if (response){
-      setTodolist(response)
-      console.log(todolist);}
+      if (response) {
+        setTodolist(response)
+        console.log(todolist);
+      }
     });
   }, [todolist]);
 
