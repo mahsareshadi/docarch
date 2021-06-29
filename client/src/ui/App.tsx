@@ -10,7 +10,7 @@ import { User } from '../../../common/src/User';
 
 function App() {
   const [userinfo, setUserinfo] = useState<User>({ firstname: "null", lastname: "null", userid: -1 });
-  if (userinfo.userid == -1) {
+  if (userinfo.userid === -1) {
     return (
       <Router>
         <LoginForm setUserinfo={setUserinfo}></LoginForm>

@@ -2,7 +2,7 @@ import { deleteFrom, insertInto, query, selectFrom } from './dbquery';
 import { User } from "../../../common/src/User";
 import { Task } from "../../../common/src/Task";
 import { File } from "../../../common/src/File";
-import { Userfiles } from "../../../common/src/Userfiles";
+import { Usersfiles } from "../../../common/src/Userfiles";
 /**
  * returns the user of the given username/password
  * @param username 
@@ -48,7 +48,13 @@ export async function deleteTask(task: Omit<Task, 'task'>) {
 //END TASK
 
 
+
 //FILE
+export async function getAllUsers() :Promise<User[]>{
+  const result = await selectFrom<User>('SELECT firstname , lastname FROM user');
+  return result;
+}
+
 export async function uploadFile(file: Omit<File , 'fileid'>) {
   const result = await insertInto('INSERT INTO uploadfile (address) VALUES ?' , [file.address]);
   return result.insertId;
@@ -59,6 +65,4 @@ export async function getUserFile(userid:number) {
   ("SELECT uploadfile.* FROM uploadfile JOIN usersfiles ON uploadfile.fileid = usersfiles.fileid where usersfiles.userid = ?",[userid]);
   return result;
 }
-// export async function getFile(getfile : Userfiles) {
-//   const result = await selectFrom('SELECT ')
-// }
+

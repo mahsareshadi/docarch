@@ -11,10 +11,7 @@ interface Props {
 }
 function CreateBtn(props: Props) {
   const [toggleState, setToggleState] = useState<number>(1);
-  const toggleTab = (index: number) => {
-    setToggleState(index);
-  };
-
+  
   return (
     <>
 

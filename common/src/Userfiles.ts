@@ -1,5 +1,4 @@
-export interface Userfiles {
-  id: number;
+export interface Usersfiles {
   fileid: number;
   userid: number;
 }
