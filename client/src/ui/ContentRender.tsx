@@ -1,6 +1,7 @@
 import "../css/ContentRender.css";
 import { ReactNode } from "react";
 import { TodoApp } from './TodoApp'
+import { Files } from './Files'
 
 import { User } from "../../../common/src/User";
 interface Props {
@@ -25,8 +26,10 @@ export function FileRender() {
   return (
     <>
       <div className="content-tabs">
-        <CreateContent title="INBOX">
-          file list
+        <CreateContent title="UPLOAD">
+          <Files />
+          <h3>I N B O X</h3>
+          <hr />
         </CreateContent>
       </div>
     </>
