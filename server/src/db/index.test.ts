@@ -21,25 +21,49 @@ async function test1() {
 
   let tasks = await db.getTasks(user.userid);
   assert(tasks != null, `must have at least one task`);
+
   let foundTask: Task | null = null;
-  for(const task of tasks){
-    if (task.taskid === insertId && task.task === "test2"){
+  for (const task of tasks) {
+    if (task.taskid === insertId && task.task === "test2") {
       foundTask = task;
       break;
     }
   }
   assert(foundTask !== null, `saved tasks must exist in the list`);
   foundTask.task = "test2-1";
-  
+
 
   let affected = await db.deleteTask(foundTask);
-  assert (affected !==null , `one task deleted `);
+  assert(affected !== null, `one task deleted `);
 
   let task = await db.getTasks(user.userid);
-    assert(task === null , `Did not expected value`)
+  assert(task === null, `Did not expected value`)
 
 
 }
-test1();
+//test1();
 //end task test
 
+async function test2() {
+  let user = await db.getUser("mahsareshadi", "123456789");
+  assert(user !== null, `Expected exiting user`);
+
+  let users = await db.getAllUsers();
+  console.log(users);
+  assert(users !== null, `Expected show all users`);
+
+  let insertid = await db.uploadFiles({ address: "test11.pdf" });
+  console.log(insertid);
+  assert(insertid > 0, 'save file address in table');
+
+  let savefileInsertid = await db.saveFiles([insertid,30],[user.userid,12]);
+  console.log(savefileInsertid);
+  assert (savefileInsertid>0 , 'save file and user id in table');
+
+  let usersfiles= await db.getUserFile(user.userid);
+  console.log(usersfiles);
+  assert(usersfiles!==null , 'expected show at least one file');
+
+
+}
+test2();
