@@ -17,30 +17,27 @@
     justify-content: center;
     align-items: center;
   }
-  .Uploadform{
-    display: flex;
-    flex-direction: column;
-  }
-  .list-of-todos{
+  
+  
+  .list-of-files{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   .file-upload,
-  .form-btn {
+  .form-upload-btn ,#upload{
     height: 60px;
     outline: none;
     border-radius: 0px;
     padding: 0.5rem;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     border: none;
    
   }
-  label{
-    padding-top: 13px;
-  }
+  
   ::-webkit-file-upload-button{
+    /* display: none; */
     cursor: pointer;
     color: white;
     background-color: #2c3a479f;
@@ -50,18 +47,18 @@
     font-size: 25px;
     height: 100%;
   }
-
   .file-upload{
     background-color: #f3def3de;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     width: 40%;
     cursor: pointer;
     outline: none;
     border:none;
   }
-  .form-btn {
-    color: #2c3a479f;
-    background: #a9a7d39f;
+  #upload{
+    color: white;
+    background: #2c3a479f;
     cursor: pointer;
     transition: all 0.3s ease;
     border-top-right-radius: 10px;
@@ -71,13 +68,13 @@
     background: #2c3a479f;
     color: white;
   }
-  .todo-container {
+  .file-container {
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  .todo-list {
+  .file-list {
     min-width: 30%;
     list-style: none;
   }
@@ -99,14 +96,24 @@
     flex: 1;
   }
   
-  .done-btn{
+  .download-btn{
     background: #806b96c2;
     width: 70px;
     color: white;
     border: none;
     padding: 1rem;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.4rem;
+    border-radius: 0px; 
+  }
+  .send-btn{
+    background: #a18db6c2;
+    width: 70px;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.4rem;
     border-radius: 0px; 
   }
   
