@@ -28,8 +28,6 @@ export function FileRender() {
       <div className="content-tabs">
         <CreateContent title="UPLOAD">
           <Files />
-          <h3>I N B O X</h3>
-          <hr />
         </CreateContent>
       </div>
     </>
