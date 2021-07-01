@@ -1,31 +1,39 @@
-import React, { ChangeEvent, FormEvent } from 'react'
+import React, { ChangeEvent, FormEvent , useEffect } from 'react'
 import { File } from '../../../common/src/File'
 import { useState } from 'react'
 import { Filename } from './FileName'
-import { uploadFiles } from '../api/index';
+import { uploadFiles , getUserFiles} from '../api/index';
 import '../css/File.css'
 
 export function Files() {
   const [file, setFile] = useState<string>("");
   const [fileList, setFileList] = useState<File[]>([]);
+  useEffect(() => {
+    getUserFiles().then(response => {
+      if (response) {
+        setFileList(response)
+        console.log(fileList);
+      }
+    });
+  }, [fileList]);
+
+
   function handlechange(event: ChangeEvent<HTMLInputElement>) {
     setFile(String(event.target.value));
-    console.log(file);
   }
 
   function addfile(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     const newFile = { fileid: -1, address: file }
     setFileList([...fileList, newFile]);
+    getUserFiles();
     setFile("");
     uploadFiles(newFile).then(response => {
       const insertid = response.data;
       newFile.fileid = insertid;
-      console.log(newFile.fileid);
-    }).then(
-      
-    );
+    })
   }
+
   return (
     <>
       {/* INPUT */}

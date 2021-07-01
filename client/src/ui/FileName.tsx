@@ -5,12 +5,12 @@ interface Props{
   file : File
 }
 export function Filename({file}:Props) {
-  let href=String(`../../server/Upload/${file.address}`)
+  let href=`"../../../server/Upload/${(file.address).split("fakepath\\")[1]}`
 
   return (
     <div className="todo">
       <li className="todo-item">
-        {file.address}
+        {(file.address).split("fakepath\\")[1]}
       </li>
       
       <a href={href} download>

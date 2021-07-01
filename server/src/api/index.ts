@@ -77,16 +77,24 @@ app.post('/uploadFile', async (req, res) => {
   const address=req.body.address;
   const userid = req.body.userid;
   if (address!== null){
-  const fileInsertid=await db.uploadFiles(address);
-  const userFileInsertId = await db.saveFiles(fileInsertid,userid);
-  if (fileInsertid && userFileInsertId === null) {
+  const fileInsertid=await db.uploadFiles(address).then((response)=>{db.saveFiles(response,userid);});
+  // const userFileInsertId = await db.saveFiles(fileInsertid,userid);
+  if (fileInsertid === null) {
     res.write("task dosent save");
   } else {
     //it is insert id
     res.send(fileInsertid + "");
   }}
 });
-
+app.get('/getFile', async (req, res) => {
+  let id: number = Number(req.query.userid);
+  const userfile = await db.getUserFile(id);
+  if (userfile === null) {
+    res.write("user has no file")
+  } else {
+    res.send(userfile);
+  }
+})
 
 app.listen(5000, () => {
   console.log("connect ! port 5000")

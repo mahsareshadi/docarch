@@ -81,3 +81,23 @@ export async function uploadFiles(file: Omit<File, "fileid">) {
         userid:currentUser?.userid
       })
 }
+async function getFile(id: number): Promise<File[]> {
+  return axios
+    .get("http://localhost:5000/getFile", {
+      params: { userid: id }
+    }).then((response: any) => response.data);
+}
+
+let files: Promise<File[]> | null = null;
+export async function getUserFiles() {
+  if (!files) {
+    if (currentUser!==null){
+    files = getFile(currentUser.userid);
+    files.then(() => {
+      setTimeout(() => {
+        files = null;
+      }, 100);
+    });
+  }  return files
+}
+}
