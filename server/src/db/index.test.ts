@@ -52,17 +52,17 @@ async function test2() {
   console.log(users);
   assert(users !== null, `Expected show all users`);
 
-  let insertid = await db.uploadFiles({ address: "test11.pdf" });
+  let insertid = await db.uploadFiles({ address: "test12.pdf" });
   console.log(insertid);
   assert(insertid > 0, 'save file address in table');
 
-  let savefileInsertid = await db.saveFiles([insertid,30],[user.userid,12]);
+  let savefileInsertid = await db.saveFiles(insertid, user.userid);
   console.log(savefileInsertid);
-  assert (savefileInsertid>0 , 'save file and user id in table');
+  assert(savefileInsertid > 0, 'save file and user id in table');
 
-  let usersfiles= await db.getUserFile(user.userid);
+  let usersfiles = await db.getUserFile(user.userid);
   console.log(usersfiles);
-  assert(usersfiles!==null , 'expected show at least one file');
+  assert(usersfiles !== null, 'expected show at least one file');
 
 
 }
