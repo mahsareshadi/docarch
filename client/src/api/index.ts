@@ -1,5 +1,6 @@
 import { User } from "../../../common/src/User";
 import { Task } from "../../../common/src/Task";
+import {File} from '../../../common/src/File'
 import axios from 'axios';
 let currentUser: User | null = null;
 export async function getUser(username?: string, password?: string): Promise<User> {
@@ -11,6 +12,7 @@ export async function getUser(username?: string, password?: string): Promise<Use
   //   }
   // }
 
+  //TASK
   return axios
     .get("http://localhost:5000/userLogin", {
       params: {
@@ -61,5 +63,21 @@ export async function deleteTask(task: Task) {
           taskid: task.taskid,
           userid: task.userid
         }
+      })
+}
+//END TASK
+
+//FILE
+
+// export function getAllUsers():User[]{
+//   return ;
+// }
+
+export async function uploadFiles(file: Omit<File, "fileid">) {
+  return axios
+    .post("http://localhost:5000/uploadFile",
+      {
+        address: file.address,
+        userid:currentUser?.userid
       })
 }

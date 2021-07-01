@@ -55,10 +55,10 @@ export async function getAllUsers() :Promise<User[]>{
 }
 
 export async function uploadFiles(file: Omit<File , 'fileid'>) {
-  const result = await insertInto('INSERT INTO uploadfile (address) VALUES (?)' , [file.address]);
+  const result = await insertInto('INSERT INTO uploadfile (address) VALUES (?)' , [[file]]);
   return result.insertId;
 }
-export async function saveFiles (fileid:number[] , userid:number[]) {
+export async function saveFiles (fileid:number , userid:number) {
   const result = await insertInto('INSERT INTO usersfiles (fileid , userid ) values (?)', [[fileid,userid]]);
   return result.insertId;
 }

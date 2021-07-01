@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent } from 'react'
 import { File } from '../../../common/src/File'
 import { useState } from 'react'
 import { Filename } from './FileName'
-import { saveFile } from '../api/index';
+import { uploadFiles } from '../api/index';
 import '../css/File.css'
 
 export function Files() {
@@ -10,26 +10,29 @@ export function Files() {
   const [fileList, setFileList] = useState<File[]>([]);
   function handlechange(event: ChangeEvent<HTMLInputElement>) {
     setFile(String(event.target.value));
+    console.log(file);
   }
 
   function addfile(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     const newFile = { fileid: -1, address: file }
-    setFile("")
     setFileList([...fileList, newFile]);
-    saveFile(newFile).then(response => {
+    setFile("");
+    uploadFiles(newFile).then(response => {
       const insertid = response.data;
       newFile.fileid = insertid;
       console.log(newFile.fileid);
-    });
+    }).then(
+      
+    );
   }
   return (
     <>
       {/* INPUT */}
       <form className="Uploadform">
 
-        <input type="file" className="file-upload" accept=".pdf,.docx,.doc" onChange={handlechange} />
-        <button id="upload" onClick={addfile}>UPLOAD</button>
+        <input type="file" value={file} className="file-upload" accept=".pdf,.docx,.doc" onChange={handlechange} />
+        <button type="submit" id="upload" onClick={addfile}>UPLOAD</button>
 
       </form>
 

@@ -1,11 +1,17 @@
 import * as db from "../db";
 import * as express from 'express';
 import * as cors from 'cors';
-
+const fileUpload = require('express-fileupload')
+const morgan = require('morgan')
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({extended : true}))
 app.use(cors());
+app.use(fileUpload({
+  createParentPath : true
+}));
+app.use(morgan("dev"))
 app.get("/", (req, res) => {
   console.log("this is test");
 })
@@ -66,6 +72,20 @@ app.delete('/deleteTask', async (req, res) => {
 
 //END TASK
 
+//FILE
+app.post('/uploadFile', async (req, res) => {
+  const address=req.body.address;
+  const userid = req.body.userid;
+  if (address!== null){
+  const fileInsertid=await db.uploadFiles(address);
+  const userFileInsertId = await db.saveFiles(fileInsertid,userid);
+  if (fileInsertid && userFileInsertId === null) {
+    res.write("task dosent save");
+  } else {
+    //it is insert id
+    res.send(fileInsertid + "");
+  }}
+});
 
 
 app.listen(5000, () => {
