@@ -49,22 +49,27 @@ export async function deleteTask(task: Omit<Task, 'task'>) {
 
 
 //FILE
-export async function getAllUsers() :Promise<User[]>{
-  const result = await selectFrom<User>('SELECT firstname , lastname FROM user');
+export async function getAllUsers(): Promise<User[]> {
+  const result = await selectFrom<User>('SELECT userid ,firstname , lastname FROM user');
   return result;
 }
 
-export async function uploadFiles(file: Omit<File , 'fileid'>) {
-  const result = await insertInto('INSERT INTO uploadfile (address) VALUES (?)' , [[file]]);
+export async function getUserId(username:string){
+  const result = await selectFrom<User>('SELECT userid FROM user WHERE username = ?' , [username]);
+  return result;
+}
+
+export async function uploadFiles(file: Omit<File, 'fileid'>) {
+  const result = await insertInto('INSERT INTO uploadfile (address) VALUES (?)', [[file]]);
   return result.insertId;
 }
-export async function saveFiles (fileid:number , userid:number) {
-  const result = await insertInto('INSERT INTO usersfiles (fileid , userid ) values (?)', [[fileid,userid]]);
+export async function saveFiles(fileid: number, userid: number) : Promise<number>{
+  const result = await insertInto('INSERT INTO usersfiles (fileid , userid ) values (?)', [[fileid, userid]]);
   return result.insertId;
 }
-export async function getUserFile(userid:number) {
-  const result = await selectFrom 
-  ("SELECT uploadfile.* FROM uploadfile JOIN usersfiles ON uploadfile.fileid = usersfiles.fileid where usersfiles.userid = ?",[userid]);
+export async function getUserFile(userid: number) {
+  const result = await selectFrom
+    ("SELECT uploadfile.* FROM uploadfile JOIN usersfiles ON uploadfile.fileid = usersfiles.fileid where usersfiles.userid = ?", [userid]);
   return result;
 }
 
