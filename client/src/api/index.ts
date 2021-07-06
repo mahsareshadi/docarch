@@ -1,6 +1,6 @@
 import { User } from "../../../common/src/User";
 import { Task } from "../../../common/src/Task";
-import {File} from '../../../common/src/File'
+import { File } from '../../../common/src/File'
 import axios from 'axios';
 let currentUser: User | null = null;
 export async function getUser(username?: string, password?: string): Promise<User> {
@@ -20,7 +20,7 @@ export async function getUser(username?: string, password?: string): Promise<Use
         password: password,
       }
     }).then((response: any) => currentUser = response.data);
-  
+
   // return currentUser;
 }
 
@@ -45,15 +45,15 @@ async function getTask(id: number): Promise<Task[]> {
 let tasks: Promise<Task[]> | null = null;
 export async function getUserTasks() {
   if (!tasks) {
-    if (currentUser!==null){
-    tasks = getTask(currentUser.userid);
-    tasks.then(() => {
-      setTimeout(() => {
-        tasks = null;
-      }, 100);
-    });
-  }  return tasks
-}
+    if (currentUser !== null) {
+      tasks = getTask(currentUser.userid);
+      tasks.then(() => {
+        setTimeout(() => {
+          tasks = null;
+        }, 100);
+      });
+    } return tasks
+  }
 }
 export async function deleteTask(task: Task) {
   return axios
@@ -78,7 +78,7 @@ export async function uploadFiles(file: Omit<File, "fileid">) {
     .post("http://localhost:5000/uploadFile",
       {
         address: file.address,
-        userid:currentUser?.userid
+        userid: currentUser?.userid
       })
 }
 async function getFile(id: number): Promise<File[]> {
@@ -91,13 +91,36 @@ async function getFile(id: number): Promise<File[]> {
 let files: Promise<File[]> | null = null;
 export async function getUserFiles() {
   if (!files) {
-    if (currentUser!==null){
-    files = getFile(currentUser.userid);
-    files.then(() => {
-      setTimeout(() => {
-        files = null;
-      }, 100);
-    });
-  }  return files
+    if (currentUser !== null) {
+      files = getFile(currentUser.userid);
+      files.then(() => {
+        setTimeout(() => {
+          files = null;
+        }, 100);
+      });
+    } return files
+  }
 }
+
+export async function saveFiles(fileid: number, userid: number) {
+  return axios
+    .post("http://localhost:5000/saveFile",
+    {
+      fileid:fileid,
+      userid:userid
+    })
+}
+
+export async function getAllUsers(): Promise<User[]> {
+  return axios
+    .get("http://localhost:5000/getUsers")
+}
+
+export async function getUserId(username: string , fileid : number) {
+  return axios
+    .get("http://localhost:5000/userId", {
+      params: {
+        username: username
+      }
+    })
 }
