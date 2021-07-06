@@ -1,5 +1,5 @@
 import React from 'react';
-import { getUserId, saveUsersFile} from '../api';
+import { getUserId, saveUsersFile } from '../api';
 import "../css/users.css";
 // import { User } from '../../../common/src/User';
 // import { getAllUsers } from "../api/index";
@@ -19,10 +19,12 @@ export function Users({ fileid }: Props) {
   function sendUser(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     // saveUsersFile(4,8);
-    getUserId(user,fileid)
-    .then((response)=>{
-      saveUsersFile(fileid,response.data)
-    })
+    if (fileid !== undefined) {
+      getUserId(user, fileid)
+        .then((response) => {
+          saveUsersFile(fileid, response.data)
+        })
+    }
 
   }
 

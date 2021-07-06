@@ -1,8 +1,8 @@
-import React, { ChangeEvent, FormEvent , useEffect } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect } from 'react'
 import { File } from '../../../common/src/File'
 import { useState } from 'react'
 import { Filename } from './FileName'
-import { uploadFiles , getUserFiles} from '../api/index';
+import { uploadFiles, getUserFiles } from '../api/index';
 import '../css/File.css'
 
 export function Files() {

@@ -2,13 +2,13 @@ import { useState } from "react";
 import "../css/TabButton.css";
 import { Link } from "react-router-dom";
 // import TodoList from './Todolist';
-interface Props {
-  to: string,
-  id: string,
-  toggle: number,
-  children: string
+// interface Props {
+//   to: string,
+//   id: string,
+//   toggle: number,
+//   children: string
 
-}
+// }
 
 // function CreateBtn(props: Props) {
 //   const [toggleState, setToggleState] = useState<number>(1);

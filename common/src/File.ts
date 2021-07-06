@@ -1,4 +1,4 @@
-export interface File{
+export interface File {
   fileid: number;
-  address : string;
+  address: string;
 }

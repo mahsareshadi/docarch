@@ -108,7 +108,7 @@ app.get('/userId', async (req, res) => {
   if (userId === null) {
     res.write("user not found")
   } else {
-    res.send(userId+"");
+    res.send(userId + "");
   }
 })
 
@@ -118,7 +118,7 @@ app.post('/saveFile', async (req, res) => {
   const fileid = req.body.fileid;
   const userid = req.body.userid;
   const insertid = await db.saveFiles(fileid, userid);
-  res.send(insertid+"");
+  res.send(insertid + "");
 });
 
 

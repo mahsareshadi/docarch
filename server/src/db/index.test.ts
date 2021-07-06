@@ -64,9 +64,9 @@ async function test2() {
   console.log(usersfiles);
   assert(usersfiles !== null, 'expected show at least one file');
 
-  let userid= await db.getUserId("mahsareshadi");
+  let userid = await db.getUserId("mahsareshadi");
   console.log(userid);
-  assert(userid !== null , 'expected find id')
+  assert(userid !== null, 'expected find id')
 
 }
 test2();

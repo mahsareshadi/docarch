@@ -54,17 +54,17 @@ export async function getAllUsers(): Promise<User[]> {
   return result;
 }
 
-export async function getUserId(username:string){
-  const result = await selectFrom<User>('SELECT userid FROM user WHERE username = ?' , [username]);
+export async function getUserId(username: string) {
+  const result = await selectFrom<User>('SELECT userid FROM user WHERE username = ?', [username]);
   return result[0].userid
- ;
+    ;
 }
 
 export async function uploadFiles(file: Omit<File, 'fileid'>) {
   const result = await insertInto('INSERT INTO uploadfile (address) VALUES (?)', [[file]]);
   return result.insertId;
 }
-export async function saveFiles(fileid: number, userid: number) : Promise<number>{
+export async function saveFiles(fileid: number, userid: number): Promise<number> {
   const result = await insertInto('INSERT INTO usersfiles (fileid , userid ) values (?)', [[fileid, userid]]);
   return result.insertId;
 }
