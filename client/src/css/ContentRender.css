@@ -14,10 +14,11 @@
     width: 90%;
     min-height: 800px;
     background: #e8d4e8a4;
-    margin: 20px auto 0;
+    margin: 5px auto 0;
     word-break: break-all;
-    border: 1px solid rgba(0, 0, 0, 0.274);
+    border: 2px solid rgba(0, 0, 0, 0.274);
     border-radius:  5px;
+    
 
   }
   .content h2 {

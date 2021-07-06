@@ -20,16 +20,19 @@
   }
   
   .bloc-tabs {
+    padding-top: 20px;
     display: flex;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .tabs {
- 
   padding: 0px;
   text-align: center;
   width: 100%;
-  background: rgba(128, 128, 128, 0.075);
+  background-color: #d1bfd1a4;
   cursor: pointer;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+  border-bottom: 10px solid rgba(0, 0, 0, 0.274);
   box-sizing: content-box;
   position: relative;
   outline: none;
@@ -56,17 +59,16 @@
   
   
   #tab1 , #tab2{
-    
     outline: none;
     border: none;
-    height: 60px;
-    font-size: 40px;
+    height: 70px;
+    font-size: 45px;
     border-radius: inherit;
     width: 100%;
-
     
   }
  
   .tab-size{
+    border-radius:  5px;
     width: 90%;
   }
