@@ -105,17 +105,23 @@ app.get('/userId', async (req, res) => {
   const username = String(req.query.username);
   const fileid = Number(req.query.fileid);
   const userId = await db.getUserId(username)
-    .then((response) => { console.log(response) });
+  if (userId === null) {
+    res.write("user not found")
+  } else {
+    res.send(userId+"");
+  }
 })
+
+
 
 app.post('/saveFile', async (req, res) => {
   const fileid = req.body.fileid;
   const userid = req.body.userid;
-  console.log(fileid);
-  console.log(userid);
   const insertid = await db.saveFiles(fileid, userid);
-  res.send(insertid);
-})
+  res.send(insertid+"");
+});
+
+
 app.listen(5000, () => {
   console.log("connect ! port 5000")
 });

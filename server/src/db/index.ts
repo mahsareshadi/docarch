@@ -56,7 +56,8 @@ export async function getAllUsers(): Promise<User[]> {
 
 export async function getUserId(username:string){
   const result = await selectFrom<User>('SELECT userid FROM user WHERE username = ?' , [username]);
-  return result;
+  return result[0].userid
+ ;
 }
 
 export async function uploadFiles(file: Omit<File, 'fileid'>) {

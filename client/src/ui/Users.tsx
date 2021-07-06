@@ -1,10 +1,10 @@
 import React from 'react';
-import { getUserId, saveFiles, uploadFiles } from '../api';
+import { getUserId, saveUsersFile} from '../api';
 import "../css/users.css";
 // import { User } from '../../../common/src/User';
 // import { getAllUsers } from "../api/index";
 // import { Alluser } from "./User"
-import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 interface Props {
   fileid: number,
   setUsers: any
@@ -18,25 +18,14 @@ export function Users({ fileid }: Props) {
 
   function sendUser(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
-    console.log(fileid)
-    // saveFiles(4,2);
+    // saveUsersFile(4,8);
     getUserId(user,fileid)
-    // .then((response)=>{
-    //   // saveFiles(fileid,response.data[0])
-    //   console.log(response.data[0])
-    // });
+    .then((response)=>{
+      saveUsersFile(fileid,response.data)
+    })
+
   }
 
-
-  // function getUser(e: FormEvent<HTMLButtonElement>){
-  //   e.preventDefault();
-  // getAllUsers().then(response => {
-  //   if (response) {
-  //     setUser(response)
-  //     console.log(user);
-  //   }
-  // });
-  // }
   return (
     <div className="main-container">
       <span className="h2"><b>USERS</b></span>
