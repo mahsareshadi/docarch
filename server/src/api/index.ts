@@ -6,10 +6,10 @@ const morgan = require('morgan')
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({extended : true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(cors());
 app.use(fileUpload({
-  createParentPath : true
+  createParentPath: true
 }));
 app.use(morgan("dev"))
 app.get("/", (req, res) => {
@@ -18,8 +18,8 @@ app.get("/", (req, res) => {
 
 //START LOGIN
 app.get('/userLogin', async (req, res) => {
-  const username = String( req.query.username);
-  const password = String( req.query.password);
+  const username = String(req.query.username);
+  const password = String(req.query.password);
   const user = await db.getUser(username, password);
   if (user === null) {
     // res.writeHead(500);
@@ -38,10 +38,8 @@ app.post('/saveTask', async (req, res) => {
   const userid: number = req.body.id;
   const taskInsertid = await db.saveTask({ task, userid });
   if (taskInsertid === null) {
-    // res.writeHead(500);
     res.write("task dosent save");
   } else {
-    //it is insert id
     res.send(taskInsertid + "");
   }
 });
@@ -66,7 +64,6 @@ app.delete('/deleteTask', async (req, res) => {
     res.write("no task deleted")
   } else {
     res.send(deleteTask + "")
-    // res.writeHead(200).write("one task deleted");
   }
 })
 
@@ -74,17 +71,17 @@ app.delete('/deleteTask', async (req, res) => {
 
 //FILE
 app.post('/uploadFile', async (req, res) => {
-  const address=req.body.address;
+  const address = req.body.address;
   const userid = req.body.userid;
-  if (address!== null){
-  const fileInsertid=await db.uploadFiles(address).then((response)=>{db.saveFiles(response,userid);});
-  // const userFileInsertId = await db.saveFiles(fileInsertid,userid);
-  if (fileInsertid === null) {
-    res.write("task dosent save");
-  } else {
-    //it is insert id
-    res.send(fileInsertid + "");
-  }}
+  if (address !== null) {
+    const fileInsertid = await db.uploadFiles(address)
+      .then((response) => { db.saveFiles(response, userid); });
+    if (fileInsertid === null) {
+      res.write("task dosent save");
+    } else {
+      res.send(fileInsertid + "");
+    }
+  }
 });
 app.get('/getFile', async (req, res) => {
   let id: number = Number(req.query.userid);
@@ -95,7 +92,30 @@ app.get('/getFile', async (req, res) => {
     res.send(userfile);
   }
 })
+app.get('/getUsers', async (req, res) => {
+  const users = await db.getAllUsers();
+  if (users === null) {
+    res.write("no user")
+  } else {
+    res.send(users);
+  }
+})
 
+app.get('/userId', async (req, res) => {
+  const username = String(req.query.username);
+  const fileid = Number(req.query.fileid);
+  const userId = await db.getUserId(username)
+    .then((response) => { console.log(response) });
+})
+
+app.post('/saveFile', async (req, res) => {
+  const fileid = req.body.fileid;
+  const userid = req.body.userid;
+  console.log(fileid);
+  console.log(userid);
+  const insertid = await db.saveFiles(fileid, userid);
+  res.send(insertid);
+})
 app.listen(5000, () => {
   console.log("connect ! port 5000")
 });
