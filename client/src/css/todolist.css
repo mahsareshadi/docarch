@@ -1,12 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+@keyframes transition {
+  from{
+    opacity: 0;
+    transform: rotateX(-10deg);
+  }
+  to{
+    opacity: 1;
+    transform: rotateX(0);
+    }
+  }
+body{
+    animation: transition 2s;
+    font-family: "Montserrat";
+    min-height: 100vh;
+}
 * {
   font-family: 'Montserrat';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  body {
-    min-height: 100vh;
   }
   
   

@@ -6,6 +6,7 @@ import TabButton from './TabButton';
 import { FileRender } from './ContentRender';
 import { TaskRender } from './ContentRender';
 import { User } from '../../../common/src/User';
+import "../css/app.css";
 
 
 function App() {

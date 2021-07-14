@@ -1,0 +1,16 @@
+@keyframes transition {
+  from{
+    opacity: 0;
+    transform: rotateX(-10deg);
+  }
+  to{
+    opacity: 1;
+    transform: rotateX(0);
+    }
+  }
+body{
+    animation: transition 2s;
+    font-family: "Montserrat";
+    min-height: 100vh;
+
+}

@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@keyframes transition {
+  from{
+    opacity: 0;
+    transform: rotateX(-10deg);
+  }
+  to{
+    opacity: 1;
+    transform: rotateX(0);
+    }
+  }
+body{
+    font-family: "Montserrat";
+}
 #header{
+    animation:transition 2s;
     width: 90%;
     padding: 30px;
     text-align: center;
